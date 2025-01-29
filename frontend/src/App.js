@@ -16,15 +16,12 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        {/* Always Visible Top Bar */}
-        <TopBar />
 
         {/* Page Content */}
         <div className="container mt-5 pt-4">
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/legal" element={<LegalNews />} />
-            <Route path="/news" element={<NewsArticle />} />
+            <Route path="/news" element={<LegalNews />} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/otp" element={<OTP/>}/>
             <Route path="*" element={<NotFound />} />
