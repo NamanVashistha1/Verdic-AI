@@ -35,8 +35,8 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card p-4 shadow-lg border-0" style={{ maxWidth: "375px", width: "100%", borderRadius: "12px", height: "100%", alignItems: "center", justifyContent: "center"}}>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{marginTop: "-50px"}}>
+      <div className="card p-4 shadow-lg border-0" style={{ maxWidth: "375px", width: "100%", borderRadius: "12px", height: "95%", alignItems: "center", justifyContent: "center",  }}>
         {/* Logo */}
         <DotLottieReact
       src="https://lottie.host/84546757-3e00-4b02-b1ec-4af2c0387c5b/PlAGCDey32.json"

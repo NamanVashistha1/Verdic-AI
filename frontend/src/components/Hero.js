@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const LegalAIHero = () => {
   return (
-    <section className="hero-section mb-1 bg-gradient-primary text-white position-relative">
+    <section className="hero-section mb-1 mt-3 bg-gradient-primary text-white position-relative">
       <Container fluid className="px-4 py-3">
         <Row className="align-items-center justify-content-center">
           <Col xs={12} md={10} lg={8} xl={6} className="text-center">

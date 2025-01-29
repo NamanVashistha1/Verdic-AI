@@ -30,7 +30,7 @@ export default function LegalCostEstimator() {
           {/* Case Type Dropdown */}
           <div className="mb-4" >
             <label className="form-label fw-bold d-flex align-items-center">
-              <Briefcase className="me-2 text-primary" />
+              <Briefcase className="me-2 text-warning" />
               Select Case Type
             </label>
             <select className="form-select" value={caseType} onChange={(e) => setCaseType(e.target.value)}>
@@ -44,7 +44,7 @@ export default function LegalCostEstimator() {
           {/* Case Complexity Dropdown */}
           <div className="mb-4">
             <label className="form-label fw-bold d-flex align-items-center">
-              <BarChart2 className="me-2 text-primary" />
+              <BarChart2 className="me-2 text-warning" />
               Select Case Complexity
             </label>
             <select className="form-select" value={complexity} onChange={(e) => setComplexity(e.target.value)}>
@@ -57,7 +57,7 @@ export default function LegalCostEstimator() {
           {/* State Selection */}
           <div className="mb-4">
             <label className="form-label fw-bold d-flex align-items-center">
-              <DollarSign className="me-2 text-primary" />
+              <DollarSign className="me-2 text-warning" />
               Select State
             </label>
             <select className="form-select" value={state} onChange={(e) => setState(e.target.value)}>
@@ -70,7 +70,7 @@ export default function LegalCostEstimator() {
   
           {/* Estimate Button */}
           <button
-            className="btn btn-primary w-100 py-2 fw-bold"
+            className="btn btn-success w-100 py-2 fw-bold"
             onClick={handleEstimateCosts}
             disabled={isCalculating}
           >

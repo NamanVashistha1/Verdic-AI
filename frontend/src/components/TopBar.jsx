@@ -70,7 +70,7 @@ function CustomNavbar() {
       {/* Backdrop */}
       {show && <div className="offcanvas-backdrop fade show" onClick={handleClose} />}
 
-      <style jsx>{`
+      <style>{`
         .offcanvas {
           visibility: visible;
           transform: translateX(${show ? "0" : "-100%"});
