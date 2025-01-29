@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  /* min-height: 100vh; */
+  display: flex;
+  align-items: center;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #040513 0%, #8e8f9c 100%);
+}
+
+.custom-button {
+  color: white !important;
+  border: 2px solid white !important;
+  transition: all 0.3s ease-in-out;
+}
+
+.custom-button:hover {
+  background-color: white !important;
+  color: #000 !important;
+  transform: scale(1.05);
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: linear-gradient(315deg, #1a237e 0%, #283593 33%, #3949ab 66%, #3f51b5 100%); */
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+  z-index: -1;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.animate__animated {
+  animation-duration: 0.3s;
+  animation-fill-mode: both;
+}
+
+.animate__fadeInUp {
+  animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate__delay-1s {
+  animation-delay: 0.3s;
+}
+
+.animate__delay-2s {
+  animation-delay: 0.3s;
+}
+
+/* Responsive styles */
+@media (max-width: 0px) {
+  .hero-section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  h1.display-4 {
+    font-size: 2.5rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  h1.display-4 {
+    font-size: 3rem;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+  }
+}
+

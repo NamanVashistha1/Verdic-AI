@@ -7,10 +7,8 @@ export default function LegalNews() {
   return (
     <>
         <TopBar />
-      <div className="container mt-5 pt-5"> 
-      
-
-        <h2 className="text-center my-3">Latest Legal News</h2>
+      <div className="container pt-2"> 
+        {/* <h2 className="text-center my-1">Latest Legal News</h2> */}
         <NewsArticle />
       </div>
     </>

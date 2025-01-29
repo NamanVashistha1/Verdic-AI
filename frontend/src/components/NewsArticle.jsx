@@ -23,16 +23,16 @@ const newsData = [
 
 export default function NewsArticle() {
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid">
       {newsData.map((news, index) => (
-        <Card className="border-0 shadow-sm p-3 mb-4" key={index}>
+        <Card className="border-0 shadow-sm p-3 mb-4" key={index} style={{background:"#e2e1e3"}}>
           {news.imageUrl && (
             <Card.Img variant="top" src={news.imageUrl} alt={news.title} className="img-fluid" />
           )}
           <Card.Body className="px-3">
             <div className="text-muted mb-2 small">{news.source}</div>
             <Card.Title className="h5 fw-bold mb-3">{news.title}</Card.Title>
-            <Card.Text className="text-secondary">{news.content}</Card.Text>
+            <Card.Text className="text" style={{color:"rgb(68 74 80)!important"}}>{news.content}</Card.Text>
             <div className="text-muted small mb-2">{news.date}</div>
             
           </Card.Body>

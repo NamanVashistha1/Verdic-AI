@@ -12,6 +12,8 @@ import NotFound from './pages/NotFound'; // 404 Page
 import Login from './pages/Login';
 import OTP from './pages/OTP';
 import QueriesPage  from './pages/queries'
+import PdfComparator from './pages/PDFcomparator'
+import LegalCostEstimator from './pages/Estimator';
 
 const App = () => {
   return (
@@ -19,13 +21,15 @@ const App = () => {
       <div className="App">
 
         {/* Page Content */}
-        <div className="container mt-5 pt-4">
+        <div className="container mt-4 pt-4">
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="/news" element={<LegalNews />} />
             <Route path="/login" element={<Login/>}/>
             <Route path="/otp" element={<OTP/>}/>
             <Route path ="/queries" element={<QueriesPage />} />
+            <Route path ="/pdfcompare" element={<PdfComparator />} />
+            <Route path ="/estimate" element={<LegalCostEstimator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
