@@ -40,20 +40,20 @@ const FileUploadAndProcess = () => {
           alert("Uploading and processing files... Please wait.");
           
           // Upload files
-          const uploadResponse = await axios.post("http://localhost:5000/upload", formData, {
+          const response  = await axios.post("http://localhost:5000/upload", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
     
-          const { filePath1, filePath2 } = uploadResponse.data; // Get file paths from the response
+          // const { filePath1, filePath2 } = response.data; // Get file paths from the response
     
-          // Send files for processing
-          const queryResponse = await axios.post("http://localhost:5000/query", {
-            file1_path: filePath1,
-            file2_path: filePath2,
-            lang: "english",
-          });
+          // // Send files for processing
+          // const queryResponse = await axios.post("http://localhost:5000/query", {
+          //   file1_path: filePath1,
+          //   file2_path: filePath2,
+          //   lang: "english",
+          // });
     
-          setResponseMessage(queryResponse.data.response);
+          setResponseMessage(response.data.comparisonResult);
           alert("Processing successful!");
     
         } catch (error) {
@@ -64,76 +64,10 @@ const FileUploadAndProcess = () => {
         setLoading(false);
       };
 
-
-  // const handleFileSelect = (event) => {
-  //   const file = event.target.files[0]
-  //   if (file) {
-  //     setSelectedFile(file)
-  //   }
-  // }
-
-  // const handleUploadClick = async () => {
-  //   if (!selectedFile) {
-  //     alert("Please select a file first.")
-  //     return
-  //   }
-
-  //   setLoading(true)
-  //   const formData = new FormData()
-  //   formData.append("file", selectedFile)
-
-  //   try {
-  //     alert("Uploading and processing file... Please wait.")
-
-  //     // Upload the file
-  //     const uploadResponse = await axios.post("http://localhost:5000/upload", formData, {
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //       onUploadProgress: (progressEvent) => {
-  //         const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-  //         setUploadProgress(percent)
-  //       }
-  //     })
-
-  //     const { filePath } = uploadResponse.data // Get file path from the response
-
-  //     // Send file for processing
-  //     const queryResponse = await axios.post("http://localhost:5000/query", {
-  //       file_path: filePath,
-  //       lang: "english"
-  //     })
-
-  //     setResponseMessage(queryResponse.data.response)
-  //     alert("Processing successful!")
-  //   } catch (error) {
-  //     console.error("Error:", error)
-  //     alert("Error processing file.")
-  //   }
-
-  //   setLoading(false)
-  // }
-
   return (
     <>
           <TopBar />
     <div className="container-fluid vh-100 d-flex flex-column bg-white p-4" >
-      {/* Header */}
-      {/* <div className="mb-4">
-        <button className="btn btn-link p-0 mb-3">
-          <ArrowLeft className="text-dark" size={24} />
-        </button>
-        <div className="progress" style={{ height: "8px" }}>
-          <div
-            className="progress-bar bg-success"
-            role="progressbar"
-            style={{ width: `${uploadProgress}%` }}
-            aria-valuenow={uploadProgress}
-            aria-valuemin="0"
-            aria-valuemax="100"
-          ></div>
-        </div>
-      </div> */}
-
-      {/* Content */}
       <div className="flex-grow-1 d-flex flex-column">
         <div className="mb-2">
           <h1 className="h3 fw-bold mb-2">Document Comparator</h1>

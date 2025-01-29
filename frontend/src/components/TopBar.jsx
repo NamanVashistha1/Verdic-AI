@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, File, LogOut } from "lucide-react";
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, File, LogOut, DollarSign } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
 function CustomNavbar() {
@@ -30,6 +30,11 @@ function CustomNavbar() {
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
     { title: "Doc Comparator", icon: <File size={20} />, path: "/pdfcompare" },
+    { 
+      title: "Legal Cost Estimator", 
+      icon: <DollarSign size={20} />, 
+      path: "/estimate" 
+    },
     {
       title: isAuthenticated ? "Logout" : "Login",
       icon: isAuthenticated ? <LogOut size={20} /> : <MessageCircle size={20} />,

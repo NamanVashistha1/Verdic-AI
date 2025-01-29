@@ -13,11 +13,17 @@ from requests.exceptions import RequestException, ConnectionError, Timeout
 from langchain_community.llms import Ollama
 from typing import List
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
+import os
 import tempfile
 from math import ceil
+import fitz
 
 app = Flask(__name__)
 CORS(app)
+
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 PERSISTENT_DIR = "chroma_db"  # Directory to persist FAISS data
 
@@ -30,6 +36,66 @@ SEARCH_ENGINE_ID = "877170db56f5c4629"
 
 # Initialize the Llama model with Ollama
 llm = Ollama(model="llama3.2")
+
+def extract_text_from_pdf(pdf_path):
+    """Extracts text from a PDF file."""
+    text = ""
+    try:
+        doc = fitz.open(pdf_path)
+        for page in doc:
+            text += page.get_text("text") + "\n"
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+    return text
+
+@app.route('/upload', methods=['POST'])
+def upload_files():
+    if 'file1' not in request.files or 'file2' not in request.files:
+        return jsonify({"error": "Both files are required"}), 400
+
+    file1 = request.files['file1']
+    file2 = request.files['file2']
+
+    if file1.filename == '' or file2.filename == '':
+        return jsonify({"error": "Both files must have names"}), 400
+
+    if file1 and file2:
+        filename1 = secure_filename(file1.filename)
+        filename2 = secure_filename(file2.filename)
+
+        file_path1 = os.path.join(app.config['UPLOAD_FOLDER'], filename1)
+        file_path2 = os.path.join(app.config['UPLOAD_FOLDER'], filename2)
+
+        file1.save(file_path1)
+        file2.save(file_path2)
+
+        # Extract text from both PDFs
+        text1 = extract_text_from_pdf(file_path1)
+        text2 = extract_text_from_pdf(file_path2)
+
+        # Compare using LLM
+        comparison_response = compare_documents_with_llm(text1, text2)
+
+        return jsonify({
+            "comparisonResult": comparison_response
+        })
+
+    return jsonify({"error": "File upload failed"}), 500
+
+def compare_documents_with_llm(text1, text2):
+    """Uses LLM to compare the two legal documents and return insights."""
+    prompt = f"""
+    You are an expert legal analyst. Compare the following two versions of a legal document.
+    Old Law:
+    {text1}
+    New Law:
+    {text2}
+    Identify the key changes, additions, and removals. Explain how these changes affect individuals and businesses. Provide a structured, easy-to-understand response.
+    """
+    
+    response = llm.invoke(prompt)
+    
+    return response
 
 def process_pdf(pdf_path: str):
     loader = PyPDFLoader(pdf_path)
