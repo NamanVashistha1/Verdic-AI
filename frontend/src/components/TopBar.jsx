@@ -30,6 +30,9 @@ function CustomNavbar() {
             <Nav.Link as={Link} to="/news" className="text-white" onClick={handleClose}>
               Legal Articles
             </Nav.Link>
+            <Nav.Link as={Link} to="/queries" className="text-white" onClick={handleClose}>
+              Queries
+            </Nav.Link>
             <Nav.Link as={Link} to="/chatbot" className="text-white" onClick={handleClose}>
               Chatbot
             </Nav.Link>

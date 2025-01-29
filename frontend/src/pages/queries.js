@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./queries.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import TopBar from "../components/TopBar"
 
 export default function ChatbotUI() {
   const [messages, setMessages] = useState([]);
@@ -83,6 +84,7 @@ const handleSendMessage = (e) => {
 
   return (
     <>
+     <TopBar />
       {!chatStarted && (
         <header className="header">
           <h1 className="title">Hello, there</h1>
