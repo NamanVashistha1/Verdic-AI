@@ -5,7 +5,7 @@ const { sendMessage } = require("../utils/twilio.js");
 const { getUserId } = require("../utils/token.js");
 
 const userSignup = async (req, res) => {
-    const phoneNumber = "+91" + req.body.phoneNumber;
+    const phoneNumber = "+" + req.body.phoneNumber;
     const totp = getToken(phoneNumber, "AUTH");
     try {
         let user = await User.findOne({ number: phoneNumber });
@@ -35,8 +35,7 @@ const userSignup = async (req, res) => {
 
 const verifySignup = async (req, res) => {
     const { phoneNumber, otp } = req.body;
-    const fullPhoneNumber = "+91" + phoneNumber;
-
+    const fullPhoneNumber = "+" + phoneNumber;
     if (!verifyToken(fullPhoneNumber, "AUTH", otp)) {
         return res.status(400).json({ message: "Invalid OTP" });
     }

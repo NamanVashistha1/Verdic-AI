@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const bodyParser = require('body-parser');
 const axios = require("axios");
+const cors = require("cors");
 const router = require("./router.js");
 
 dotenv.config();
@@ -12,6 +13,7 @@ const port = 8000;
 
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Hello World!");
