@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar,Nav, Offcanvas } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu, File } from "lucide-react";
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, File, LogOut, DollarSign } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
 function CustomNavbar() {
@@ -30,14 +30,18 @@ function CustomNavbar() {
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
     { title: "Doc Comparator", icon: <File size={20} />, path: "/pdfcompare" },
+    { 
+      title: "Legal Cost Estimator", 
+      icon: <DollarSign size={20} />, 
+      path: "/estimate" 
+    },
     {
       title: isAuthenticated ? "Logout" : "Login",
-      icon: isAuthenticated ? <MessageCircle size={20} /> : <MessageCircle size={20} />,
+      icon: isAuthenticated ? <LogOut size={20} /> : <MessageCircle size={20} />,
       path: isAuthenticated ? "#" : "/login",
       onClick: isAuthenticated ? handleLogout : undefined,  // Handle logout if authenticated
     },
-  ]
-
+  ];
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -47,11 +51,11 @@ function CustomNavbar() {
       {/* Navbar with Dark Theme */}
       <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-between">
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
-        <Navbar.Brand className="mx-auto text-white fw-bold" >LEGAL AI</Navbar.Brand>
+        <Navbar.Brand className="mx-auto text-white fw-bold">LEGAL AI</Navbar.Brand>
       </Navbar>
 
       {/* Offcanvas Sliding Menu (Left Side) */}
-       <div
+      <div
         className={`offcanvas offcanvas-start ${show ? "show" : ""}`}
         tabIndex={-1}
         style={{
@@ -68,11 +72,11 @@ function CustomNavbar() {
           <div className="nav flex-column">
             {menuItems.map((item, index) => (
               <Nav.Link
-              as= {Link}
                 key={index}
+                as={item.onClick ? 'button' : Link} // Use 'button' for logout action
                 to={item.path}
                 className="nav-link text-white py-3 px-4 d-flex align-items-center justify-content-between border-bottom border-secondary"
-                onClick={handleClose}
+                onClick={item.onClick ? handleLogout : handleClose} // Trigger logout or close
               >
                 <div className="d-flex align-items-center gap-3">
                   {item.icon}
