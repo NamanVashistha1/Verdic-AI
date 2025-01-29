@@ -1,10 +1,13 @@
 import React from "react";
+import FeatureSection from "../components/FeatureSection";
 
 export default function Home() {
   return (
     <div className="text-center">
-      <h2>Welcome to the Legal News App</h2>
-      <p>Stay updated with the latest legal updates.</p>
+      <h1 className="fw-bold my-5">Welcome to Legal AI</h1>
+      <FeatureSection />  {/* ✅ Using the animated section here */}
     </div>
   );
 }
+
+
