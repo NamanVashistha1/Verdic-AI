@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 export default function TopBar() {
   const [showMenu, setShowMenu] = useState(false);
 
+  // Function to close the dropdown when an item is clicked
+  const closeMenu = () => setShowMenu(false);
+
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top px-3 d-flex justify-content-between">
       <span className="navbar-brand fw-bold">Legal News</span>
@@ -15,9 +18,9 @@ export default function TopBar() {
 
         {showMenu && (
           <div className="dropdown-menu dropdown-menu-end show position-absolute end-0 mt-2">
-            <Link className="dropdown-item" to="/">Home</Link>
-            <Link className="dropdown-item" to="/legal">Legal News</Link>
-            <Link className="dropdown-item" to="/chatbot">Chatbot</Link>
+            <Link className="dropdown-item" to="/" onClick={closeMenu}>Home</Link>
+            <Link className="dropdown-item" to="/legal" onClick={closeMenu}>Legal News</Link>
+            <Link className="dropdown-item" to="/chatbot" onClick={closeMenu}>Chatbot</Link>
           </div>
         )}
       </div>
