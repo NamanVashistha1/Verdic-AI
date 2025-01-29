@@ -175,7 +175,7 @@ def estimate_legal_costs() -> Dict[str, Any]:
     case_type = data["case_type"]
     complexity = data["complexity"]
     state = data["state"]
-
+     
     # Adjusted legal fee structure for India (per hour in INR)
     base_costs = {
         "Simple": (1000, 3000),  # ₹1000 - ₹3000 per hour
