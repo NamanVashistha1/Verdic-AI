@@ -1,20 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar,Nav, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 function CustomNavbar() {
   const [show, setShow] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();  // To handle redirection
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  useEffect(() => {
+    // Check if auth token exists in local storage
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    // Clear the auth token and redirect to login
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+    navigate('/login');  // Redirect to login page
+  };
 
   const menuItems = [
     { title: "Home", icon: <Home size={20} />, path: "/" },
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
-    { title: "Login", icon: <MessageCircle size={20} />, path: "/login" },
-  ]
+    {
+      title: isAuthenticated ? "Logout" : "Login",
+      icon: isAuthenticated ? <MessageCircle size={20} /> : <MessageCircle size={20} />,
+      path: isAuthenticated ? "#" : "/login",
+      onClick: isAuthenticated ? handleLogout : undefined,  // Handle logout if authenticated
+    },
+  ];
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       {/* Navbar with Dark Theme */}
