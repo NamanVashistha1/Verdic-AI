@@ -9,6 +9,8 @@ import NewsArticle from './components/NewsArticle';
 import LegalNews from './pages/LegalNews'; // Page for legal news
 import Home from './pages/Home'; // Home page
 import NotFound from './pages/NotFound'; // 404 Page
+import Login from './pages/Login';
+import OTP from './pages/OTP';
 
 const App = () => {
   return (
@@ -23,6 +25,8 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route path="/legal" element={<LegalNews />} />
             <Route path="/news" element={<NewsArticle />} />
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/otp" element={<OTP/>}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
