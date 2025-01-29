@@ -8,7 +8,7 @@ const testimonials = [
     stars: 5,
     tag: "Legal news",
     quote:
-      "It keeps me updated with the latest global legal news and insights. ",
+      "It keeps me updated with the latest global legal news and industry insights. ",
     name: "El-Elyon Appahoh, Esq.",
     title: "Attorney",
     image: "https://th.bing.com/th/id/OIP.a_C9v1H7RBbVyFjU4udThgHaKX?rs=1&pid=ImgDetMain",
