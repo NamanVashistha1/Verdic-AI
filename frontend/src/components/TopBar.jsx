@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
+import { Navbar,Nav, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu } from "lucide-react";
 
 function CustomNavbar() {
   const [show, setShow] = useState(false);
@@ -8,6 +9,12 @@ function CustomNavbar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const menuItems = [
+    { title: "Home", icon: <Home size={20} />, path: "/" },
+    { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
+    { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
+    { title: "Login", icon: <MessageCircle size={20} />, path: "/login" },
+  ]
   return (
     <>
       {/* Navbar with Dark Theme */}
@@ -17,28 +24,79 @@ function CustomNavbar() {
       </Navbar>
 
       {/* Offcanvas Sliding Menu (Left Side) */}
-      <Offcanvas show={show} onHide={handleClose} placement="start" className="custom-offcanvas">
-        <Offcanvas.Header className="bg-dark text-white">
-          <Offcanvas.Title className="text-white fw-bold">Menu</Offcanvas.Title>
-          <button className="btn-close btn-close-white" onClick={handleClose}></button>
-        </Offcanvas.Header>
-        <Offcanvas.Body className="bg-dark text-white">
-          <Nav className="flex-column">
-            <Nav.Link as={Link} to="/" className="text-white" onClick={handleClose}>
-              Home
-            </Nav.Link>
-            <Nav.Link as={Link} to="/news" className="text-white" onClick={handleClose}>
-              Legal Articles
-            </Nav.Link>
-            <Nav.Link as={Link} to="/queries" className="text-white" onClick={handleClose}>
-              Queries
-            </Nav.Link>
-            <Nav.Link as={Link} to="/chatbot" className="text-white" onClick={handleClose}>
-              Chatbot
-            </Nav.Link>
-          </Nav>
-        </Offcanvas.Body>
-      </Offcanvas>
+       <div
+        className={`offcanvas offcanvas-start ${show ? "show" : ""}`}
+        tabIndex={-1}
+        style={{
+          backgroundColor: "#1a1a1a",
+          borderRight: "1px solid rgba(255,255,255,0.1)",
+        }}
+      >
+        <div className="offcanvas-header border-bottom border-secondary">
+          <h5 className="offcanvas-title text-white mb-0 fs-4 fw-bold">Menu</h5>
+          <button type="button" className="btn-close btn-close-white" onClick={handleClose} aria-label="Close menu" />
+        </div>
+
+        <div className="offcanvas-body p-0">
+          <div className="nav flex-column">
+            {menuItems.map((item, index) => (
+              <Nav.Link
+              as= {Link}
+                key={index}
+                to={item.path}
+                className="nav-link text-white py-3 px-4 d-flex align-items-center justify-content-between border-bottom border-secondary"
+                onClick={handleClose}
+              >
+                <div className="d-flex align-items-center gap-3">
+                  {item.icon}
+                  <span className="fs-5">{item.title}</span>
+                </div>
+                <ChevronRight size={20} className="text-secondary" />
+              </Nav.Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="offcanvas-footer p-4 mt-auto border-top border-secondary">
+          <div className="d-flex align-items-center gap-2 text-white-50">
+            <div>
+              <div className="fw-bold text-white">Legal Assistant</div>
+              <small>Version 1.0</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {show && <div className="offcanvas-backdrop fade show" onClick={handleClose} />}
+
+      <style jsx>{`
+        .offcanvas {
+          visibility: visible;
+          transform: translateX(${show ? "0" : "-100%"});
+          transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-link {
+          transition: background-color 0.3s ease;
+        }
+
+        .nav-link:hover {
+          background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-link:active {
+          background-color: rgba(255,255,255,0.2);
+        }
+
+        .border-bottom {
+          transition: border-color 0.3s ease;
+        }
+
+        .text-secondary {
+          transition: color 0.2s ease;
+        }
+      `}</style>
     </>
   );
 }
