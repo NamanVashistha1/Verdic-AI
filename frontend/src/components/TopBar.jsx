@@ -13,7 +13,7 @@ function CustomNavbar() {
     { title: "Home", icon: <Home size={20} />, path: "/" },
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
-    { title: "Chatbot", icon: <MessageCircle size={20} />, path: "/chatbot" },
+    { title: "Login", icon: <MessageCircle size={20} />, path: "/login" },
   ]
   return (
     <>

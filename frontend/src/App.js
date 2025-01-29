@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound'; // 404 Page
 import Login from './pages/Login';
 import OTP from './pages/OTP';
 import QueriesPage  from './pages/queries'
+import LegalCostEstimator from './pages/Estimator';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/login" element={<Login/>}/>
             <Route path="/otp" element={<OTP/>}/>
             <Route path ="/queries" element={<QueriesPage />} />
+            <Route path ="/estimate" element={<LegalCostEstimator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

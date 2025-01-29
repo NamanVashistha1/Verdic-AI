@@ -1,12 +1,19 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import axios from "axios";
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const bodyParser = require('body-parser');
+const axios = require("axios");
+const cors = require("cors");
+const router = require("./router.js");
 
 dotenv.config();
 
 const app = express();
 const port = 8000;
+
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Hello World!");
@@ -25,7 +32,7 @@ const connectDB = async () => {
     }
 }
 
-app.use(express.json());
+app.use("/api/", router);
 
 app.listen(port, () => {
     connectDB()

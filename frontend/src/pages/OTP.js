@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function OtpVerification() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const navigate = useNavigate();
+  const phone = localStorage.getItem("phone");
 
   const handleChange = (element, index) => {
-    if (isNaN(Number(element.value)) && element.value !== "") return false;
+    if (isNaN(Number(element.value)) && element.value !== "") return;
 
     setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
@@ -26,6 +30,32 @@ export default function OtpVerification() {
       }
     }
   };
+
+  const handleVerify = async () => {
+    const otpCode = otp.join(""); // Combine array into a single OTP string
+
+    if (otpCode.length !== 6) {
+      alert("Please enter a valid 6-digit OTP");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:8000/api/signup/verify", {
+        phoneNumber: phone,
+        otp: otpCode,
+      });
+
+      const { authToken } = response.data;
+      localStorage.setItem("authToken", authToken); // Save token locally
+
+      navigate("/"); // Redirect to the dashboard
+    } catch (error) {
+      console.error("Error:", error);
+      alert(error.response?.data?.message || "Invalid OTP");
+    }
+  };
+
+  console.log(otp)
 
   return (
     <>
@@ -88,6 +118,7 @@ export default function OtpVerification() {
               color: "black",
               fontWeight: "500",
             }}
+            onClick={handleVerify}
           >
             Verify OTP
           </button>

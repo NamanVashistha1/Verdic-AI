@@ -1,18 +1,15 @@
-import User from "../models/userModel.js";
-import jwt from "jsonwebtoken";
-import { getToken, verifyToken } from "../utils/totp.js";
-import { sendMessage } from "../utils/twilio.js";
-import { getUserId } from "../utils/token.js";
+const User = require("../models/userSchema.js");
+const jwt = require("jsonwebtoken");
+const { getToken, verifyToken } = require("../utils/totp.js");
+const { sendMessage } = require("../utils/twilio.js");
+const { getUserId } = require("../utils/token.js");
 
 const userSignup = async (req, res) => {
-    const phoneNumber = "+91" + req.body.phoneNumber;
-
+    const phoneNumber = "+" + req.body.phoneNumber;
     const totp = getToken(phoneNumber, "AUTH");
-
     try {
         let user = await User.findOne({ number: phoneNumber });
-        
-        if (!user) {
+        if (user===null) {
             user = new User({
                 number: phoneNumber,
                 verified: false,
@@ -38,8 +35,7 @@ const userSignup = async (req, res) => {
 
 const verifySignup = async (req, res) => {
     const { phoneNumber, otp } = req.body;
-    const fullPhoneNumber = "+91" + phoneNumber;
-
+    const fullPhoneNumber = "+" + phoneNumber;
     if (!verifyToken(fullPhoneNumber, "AUTH", otp)) {
         return res.status(400).json({ message: "Invalid OTP" });
     }
@@ -90,4 +86,4 @@ const nameSignup = async (req, res) => {
     }
 };
 
-export { userSignup, verifySignup, nameSignup };
+module.exports =  { userSignup, verifySignup, nameSignup };
