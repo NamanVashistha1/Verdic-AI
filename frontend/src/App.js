@@ -15,6 +15,7 @@ import QueriesPage  from './pages/queries'
 import PdfComparator from './pages/PDFcomparator'
 import LegalCostEstimator from './pages/Estimator';
 import LegalDomains from './pages/Domains';
+import DomainPage from './pages/Lawyers';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
             <Route path ="/pdfcompare" element={<PdfComparator />} />
             <Route path ="/estimate" element={<LegalCostEstimator />} />
             <Route path ="/domains" element={<LegalDomains />} />
+            <Route path="/lawyers/:domain" element={<DomainPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
