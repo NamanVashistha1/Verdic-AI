@@ -1,29 +1,43 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Navbar, Offcanvas, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-export default function TopBar() {
-  const [showMenu, setShowMenu] = useState(false);
+function CustomNavbar() {
+  const [show, setShow] = useState(false);
 
-  // Function to close the dropdown when an item is clicked
-  const closeMenu = () => setShowMenu(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
-    <nav className="navbar navbar-dark bg-dark fixed-top px-3 d-flex justify-content-between">
-      <span className="navbar-brand fw-bold">Legal News</span>
-      <div className="position-relative">
-        <button className="btn btn-dark border-0" onClick={() => setShowMenu(!showMenu)}>
-          ⋮
-        </button>
+    <>
+      {/* Navbar with Dark Theme */}
+      <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-between">
+        <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
+        <Navbar.Brand className="mx-auto text-white fw-bold">LEGAL AI</Navbar.Brand>
+      </Navbar>
 
-        {showMenu && (
-          <div className="dropdown-menu dropdown-menu-end show position-absolute end-0 mt-2">
-            <Link className="dropdown-item" to="/" onClick={closeMenu}>Home</Link>
-            <Link className="dropdown-item" to="/legal" onClick={closeMenu}>Legal News</Link>
-            <Link className="dropdown-item" to="/chatbot" onClick={closeMenu}>Chatbot</Link>
-          </div>
-        )}
-      </div>
-    </nav>
+      {/* Offcanvas Sliding Menu (Left Side) */}
+      <Offcanvas show={show} onHide={handleClose} placement="start" className="custom-offcanvas">
+        <Offcanvas.Header className="bg-dark text-white">
+          <Offcanvas.Title className="text-white fw-bold">Menu</Offcanvas.Title>
+          <button className="btn-close btn-close-white" onClick={handleClose}></button>
+        </Offcanvas.Header>
+        <Offcanvas.Body className="bg-dark text-white">
+          <Nav className="flex-column">
+            <Nav.Link as={Link} to="/" className="text-white" onClick={handleClose}>
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/news" className="text-white" onClick={handleClose}>
+              Legal Articles
+            </Nav.Link>
+            <Nav.Link as={Link} to="/chatbot" className="text-white" onClick={handleClose}>
+              Chatbot
+            </Nav.Link>
+          </Nav>
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   );
 }
+
+export default CustomNavbar;
