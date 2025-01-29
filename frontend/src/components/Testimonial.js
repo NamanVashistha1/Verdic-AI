@@ -43,10 +43,10 @@ export default function TestimonialCarousel() {
   }
 
   return (
-    <div className="container py-5">
+    <div className="container">
       <div className="row mb-4 align-items-center">
         <div className="col">
-          <h1 className="h2 fw-bold mb-0">
+          <h1 className="h2 fw-bold mt-3 mb-0">
             Trusted by
             <br />
             100,000+ users

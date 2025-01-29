@@ -20,7 +20,7 @@ function CustomNavbar() {
       {/* Navbar with Dark Theme */}
       <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-between">
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
-        <Navbar.Brand className="mx-auto text-white fw-bold">LEGAL AI</Navbar.Brand>
+        <Navbar.Brand className="mx-auto text-white fw-bold" >LEGAL AI</Navbar.Brand>
       </Navbar>
 
       {/* Offcanvas Sliding Menu (Left Side) */}
