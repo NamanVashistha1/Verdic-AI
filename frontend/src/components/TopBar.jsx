@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar,Nav, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu } from "lucide-react";
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu, File } from "lucide-react";
 
 function CustomNavbar() {
   const [show, setShow] = useState(false);
@@ -14,6 +14,7 @@ function CustomNavbar() {
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
     { title: "Login", icon: <MessageCircle size={20} />, path: "/login" },
+    { title: "Doc Comparator", icon: <File size={20} />, path: "/pdfcompare" },
   ]
   return (
     <>

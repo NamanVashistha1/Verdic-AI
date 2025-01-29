@@ -146,7 +146,7 @@ export default function ChatbotUI() {
     e.preventDefault();
     if (input.trim() !== "") {
       setChatStarted(true);
-
+      setInput("");
       const userMessage = { text: input, sender: "user" };
       setMessages((prevMessages) => [...prevMessages, userMessage]);
 
@@ -156,10 +156,11 @@ export default function ChatbotUI() {
           axios.post("http://localhost:8080/query", { query: input }),
           axios.post("http://localhost:8080/websearch", { query: input }),
         ]);
-
+        
+        console.log(Object.keys(webSearchResponse).length)
         // Add bot response
         const botMessage = { text: botResponse.data.response, sender: "bot" };
-
+  
         // Add web search response
         const webSearchMessage = {
           sender: "bot",
@@ -185,13 +186,14 @@ export default function ChatbotUI() {
         setMessages((prevMessages) => [
           ...prevMessages,
           botMessage,
-          webSearchMessage,
+          ...(Object.keys(webSearchResponse).length > 0 ? [webSearchMessage] : []),  // Add webSearchMessage only if there are search results
         ]);
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
 
-      setInput("");
+      
     }
   };
 
