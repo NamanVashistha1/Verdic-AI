@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar,Nav, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu } from "lucide-react";
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, Menu, File } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
 
 function CustomNavbar() {
@@ -17,7 +17,8 @@ function CustomNavbar() {
     }
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();  // Prevent default navigation
     // Clear the auth token and redirect to login
     localStorage.removeItem('authToken');
     setIsAuthenticated(false);
@@ -28,13 +29,15 @@ function CustomNavbar() {
     { title: "Home", icon: <Home size={20} />, path: "/" },
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
+    { title: "Doc Comparator", icon: <File size={20} />, path: "/pdfcompare" },
     {
       title: isAuthenticated ? "Logout" : "Login",
       icon: isAuthenticated ? <MessageCircle size={20} /> : <MessageCircle size={20} />,
       path: isAuthenticated ? "#" : "/login",
       onClick: isAuthenticated ? handleLogout : undefined,  // Handle logout if authenticated
     },
-  ];
+  ]
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

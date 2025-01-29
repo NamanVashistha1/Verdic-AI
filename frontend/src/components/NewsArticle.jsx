@@ -22,7 +22,7 @@ const NewsComponent = () => {
       <Row>
         {news.map((article, index) => (
           <Col key={index} md={4}>
-            <Card className="mb-4">
+            <Card className="mb-4" style={{backgroundColor: "#2125291c"}}>
               <Card.Img variant="top" src={article.urlToImage || "https://via.placeholder.com/150"} />
               <Card.Body>
                 <Card.Title>{article.title}</Card.Title>

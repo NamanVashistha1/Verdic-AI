@@ -71,7 +71,8 @@ def process_pdf_endpoint():
 def query_document():
     data = request.json
     query = data.get('query')
-
+    
+    # print("query" ,query)
     if not query:
         return jsonify({"error": "Query not provided"}), 400
     
@@ -81,7 +82,6 @@ def query_document():
 
     # Step 3: Generate final response using symptoms and context
     final_response = get_final_response(query, context)
-    
     return jsonify({"response": final_response})
 
 def get_final_response(query: str, context: List[str]) -> str:
@@ -91,7 +91,7 @@ def get_final_response(query: str, context: List[str]) -> str:
         f"Context from relevant sources:\n{context_text}\n\n"
         "Provide a direct answer without introductory phrases. Answer the query first, then include fines/penalties or case references **only if they are mentioned in the context**. Do not say 'No specific case' or 'Not mentioned'. The response must not exceed 100 words."
     )
-    print(prompt)
+    # print(prompt)
     response = llm.invoke(prompt)
     unwanted_phrases = [
         "Here are the three points:",
@@ -261,7 +261,7 @@ def search_web(query: str, num_results: int = 3) -> List[Dict[str, str]]:
     Returns the top results filtered for relevance.
     """
     try:
-        print("Hitting")
+        # print("Hitting")
         service = build("customsearch", "v1", developerKey=API_KEY)
         
         # Add legal-specific terms to improve search relevance
@@ -305,7 +305,7 @@ def search_api():
 
     query = data["query"]
     num_results = 3
-    print(query)
+    # print(query)
     # Directly return the results from the search_web function
     return jsonify(search_web(query, num_results))
 
