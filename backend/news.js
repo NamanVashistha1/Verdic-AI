@@ -5,7 +5,7 @@ const NewsArticle = require("./models/newsSchema");
 const newsapi = new NewsAPI("0c63a2c37fa6422baf9fc652d5b7a5cb");
 
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/newsDB", {
+mongoose.connect("mongodb+srv://admin:vGQaNgatUMG7HzYj@cluster0.zxgtm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
