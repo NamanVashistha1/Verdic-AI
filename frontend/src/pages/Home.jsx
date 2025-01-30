@@ -53,7 +53,7 @@ export default function Home() {
           <motion.div variants={itemVariants} className="col-lg-10 text-center mt-2">
             <h1 className="display-4 fw-bold mb-1">About Us</h1>
             <p className="mb-0 text-muted" style={{fontSize:"16px"}}>
-            At Legal AI, we transform how legal professionals handle documents, regulations, and case research. Our AI-powered platform streamlines workflows for accuracy, efficiency, and compliance.
+            At VerdicAI, we transform how legal professionals handle documents, regulations, and case research. Our AI-powered platform streamlines workflows for accuracy, efficiency, and compliance.
             </p>
           </motion.div>
         </motion.div>

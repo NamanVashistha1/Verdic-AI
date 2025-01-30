@@ -6,8 +6,11 @@ const features = [
   { title: "AI-Powered Legal Assistance", description: "Get instant legal insights with our AI chatbot." },
   { title: "Document Automation", description: "Generate contracts and legal documents effortlessly." },
   { title: "Case Law Research", description: "Find relevant case laws in seconds." },
-  { title: "Secure Cloud Storage", description: "Store and manage your legal files securely online." },
-  { title: "Real-Time Consultation", description: "Connect with legal experts instantly." },
+  { title: "Document Comparator", description: "Compare legal documents using AI." },
+  { title: "Legal Cost Estimator", description: "Get an idea about legal expenses." },
+  { title: "Contract Risk Analysis", description: "Analyze possible risky clauses in a contract." },
+  { title: "Draft Generator", description: "Help users to generate draft easily." },
+  { title: "Latest News", description: "Get summarized news on trending topics." },
 ];
 
 export default function FeatureSection() {

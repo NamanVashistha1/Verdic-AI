@@ -55,7 +55,7 @@ function CustomNavbar() {
       {/* Navbar with Dark Theme */}
       <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-between">
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
-        <Navbar.Brand className="mx-auto text-white fw-bold">LEGAL AI</Navbar.Brand>
+        <Navbar.Brand className="mx-auto text-white fw-bold" >VerdicAI</Navbar.Brand>
       </Navbar>
 
       {/* Offcanvas Sliding Menu (Left Side) */}
@@ -95,7 +95,7 @@ function CustomNavbar() {
         <div className="offcanvas-footer p-4 mt-auto border-top border-secondary">
           <div className="d-flex align-items-center gap-2 text-white-50">
             <div>
-              <div className="fw-bold text-white">Legal Assistant</div>
+              <div className="fw-bold text-white">VerdicAI</div>
               <small>Version 1.0</small>
             </div>
           </div>
@@ -131,6 +131,8 @@ function CustomNavbar() {
         .text-secondary {
           transition: color 0.2s ease;
         }
+
+       
       `}</style>
     </>
   );

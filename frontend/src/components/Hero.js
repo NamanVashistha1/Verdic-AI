@@ -21,7 +21,7 @@ const LegalAIHero = () => {
         <Row className="align-items-center justify-content-center">
           <Col xs={12} md={10} lg={8} xl={6} className="text-center"  >
             <h1 className="display-4 fw-bold mb-3 animate__animated animate__fadeInUp">
-              Ask Legal AI
+              Ask VerdicAI
             </h1>
             <p className="mb-4 animate__animated animate__fadeInUp animate__delay-1s" >
               Get instant, accurate legal advice powered by advanced AI. Your personal legal assistant is just a click
