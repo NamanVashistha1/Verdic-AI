@@ -1,0 +1,63 @@
+.legal-domains-container {
+    min-height: calc(100vh - 56px);
+}
+
+/* Prevent blue background on click */
+.domain-item:active,
+.domain-item:focus,
+.domain-item:focus-visible {
+    background-color: white !important;
+    border-color: white;
+    color: inherit !important;
+    outline: none !important;
+    border-left-color: #28a745; /* Optional: Keeps the left border effect */
+}
+
+/* Ensure the text color remains the same after click */
+.domain-item {
+    color: #333 !important;
+    border: white !important;
+}
+
+/* Remove any Bootstrap active styles */
+.domain-item.active {
+    background-color: white !important;
+    border: white;
+    color: #333 !important;
+}
+
+.domain-item:hover {
+    background-color: #f1f1f1 !important; /* Light gray for a subtle hover effect */
+    border-left-color: #28a745; /* Green left border for a professional look */
+}
+
+/* Icon Styling */
+.domain-icon {
+    font-size: 1.5rem;
+}
+
+.domain-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Optional: Smooth transition for the arrow */
+.arrow-icon {
+    transition: transform 0.2s ease;
+}
+
+.domain-item:hover .arrow-icon {
+    transform: translateX(3px); /* Subtle movement instead of color change */
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .domain-name {
+        font-size: 1rem;
+    }
+
+    .domain-icon {
+        font-size: 1.2rem;
+    }
+}
