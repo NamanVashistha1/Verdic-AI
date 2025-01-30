@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';  // For dynamic routing based on URL
+import TopBar from '../components/TopBar';
 
 const DomainPage = () => {
     const { domain } = useParams();  // This captures the "domain" URL parameter
@@ -12,39 +13,149 @@ const DomainPage = () => {
 
     const fetchLawyers = (domain) => {
         const domainData = {
-            estate: [
-                { name: 'John Doe', specialization: 'Real Estate', phone: '123-456-7890', email: 'john.doe@example.com' },
-                { name: 'Jane Smith', specialization: 'Real Estate', phone: '987-654-3210', email: 'jane.smith@example.com' },
-                { name: 'Mike Johnson', specialization: 'Real Estate', phone: '555-555-5555', email: 'mike.johnson@example.com' },
-                { name: 'Sara Lee', specialization: 'Real Estate', phone: '666-666-6666', email: 'sara.lee@example.com' }
-            ],
-            construction: [
-                { name: 'David Brown', specialization: 'Construction', phone: '111-222-3333', email: 'david.brown@example.com' },
-                { name: 'Emily Davis', specialization: 'Construction', phone: '444-555-6666', email: 'emily.davis@example.com' },
-                { name: 'Paul Walker', specialization: 'Construction', phone: '777-888-9999', email: 'paul.walker@example.com' },
-                { name: 'Nina White', specialization: 'Construction', phone: '000-111-2222', email: 'nina.white@example.com' }
-            ],
-            corporate: [
-                { name: 'Anna Green', specialization: 'Corporate Law', phone: '123-456-7891', email: 'anna.green@example.com' },
-                { name: 'Richard Harris', specialization: 'Corporate Law', phone: '987-654-3211', email: 'richard.harris@example.com' },
-                { name: 'Sophia Black', specialization: 'Corporate Law', phone: '555-555-5551', email: 'sophia.black@example.com' },
-                { name: 'Michael Blue', specialization: 'Corporate Law', phone: '666-666-6661', email: 'michael.blue@example.com' }
-            ],
-            public_administration: [
-                { name: 'Helen White', specialization: 'Public Administration', phone: '111-222-3331', email: 'helen.white@example.com' },
-                { name: 'Liam Grey', specialization: 'Public Administration', phone: '444-555-6661', email: 'liam.grey@example.com' },
-                { name: 'Olivia Blue', specialization: 'Public Administration', phone: '777-888-9991', email: 'olivia.blue@example.com' },
-                { name: 'James Brown', specialization: 'Public Administration', phone: '000-111-2221', email: 'james.brown@example.com' }
-            ],
-            healthcare: [
-                { name: 'Rachel Green', specialization: 'Healthcare Law', phone: '123-456-7892', email: 'rachel.green@example.com' },
-                { name: 'Paulina Smith', specialization: 'Healthcare Law', phone: '987-654-3212', email: 'paulina.smith@example.com' },
-                { name: 'John White', specialization: 'Healthcare Law', phone: '555-555-5552', email: 'john.white@example.com' },
-                { name: 'Emily Harris', specialization: 'Healthcare Law', phone: '666-666-6662', email: 'emily.harris@example.com' }
-            ],
-            insurance: [
-                { name: 'Megan Brown', specialization: 'Insurance Law', phone: '111-222-3332', email: 'megan.brown@example.com' },
-                { name: 'Jack Wilson', specialization: 'Insurance Law', phone: '444-555-6662', email: 'jack.wilson@example.com' },
+                "estate": [
+                  {
+                    "name": "Cyril Shroff",
+                    "specialization": "Real Estate",
+                    "phone": "+91-22-2496-4455",
+                    "email": "cyril.shroff@cyrilshroff.com"
+                  },
+                  {
+                    "name": "Zia Mody",
+                    "specialization": "Real Estate",
+                    "phone": "+91-22-6636-7000",
+                    "email": "zia.mody@azbpartners.com"
+                  },
+                  {
+                    "name": "Shardul Shroff",
+                    "specialization": "Real Estate",
+                    "phone": "+91-11-4159-0700",
+                    "email": "shardul.shroff@amsshardul.com"
+                  },
+                  {
+                    "name": "Haigreve Khaitan",
+                    "specialization": "Real Estate",
+                    "phone": "+91-22-6636-5000",
+                    "email": "haigreve.khaitan@khaitanco.com"
+                  }
+                ],
+                "construction": [
+                  {
+                    "name": "Rajiv Luthra",
+                    "specialization": "Construction",
+                    "phone": "+91-11-4121-5100",
+                    "email": "rajiv.luthra@luthra.com"
+                  },
+                  {
+                    "name": "Anand Desai",
+                    "specialization": "Construction",
+                    "phone": "+91-22-6636-7000",
+                    "email": "anand.desai@dsklegal.com"
+                  },
+                  {
+                    "name": "Ravi Singhania",
+                    "specialization": "Construction",
+                    "phone": "+91-11-4747-1414",
+                    "email": "ravi.singhania@singhania.in"
+                  },
+                  {
+                    "name": "Berjis Desai",
+                    "specialization": "Construction",
+                    "phone": "+91-22-6636-7000",
+                    "email": "berjis.desai@jonesday.com"
+                  }
+                ],
+                "corporate": [
+                  {
+                    "name": "Pallavi Shroff",
+                    "specialization": "Corporate Law",
+                    "phone": "+91-11-4311-5000",
+                    "email": "pallavi.shroff@shardulamarchand.com"
+                  },
+                  {
+                    "name": "Rohit Kochhar",
+                    "specialization": "Corporate Law",
+                    "phone": "+91-11-4111-5222",
+                    "email": "rohit.kochhar@kochhar.com"
+                  },
+                  {
+                    "name": "Sujit Ghosh",
+                    "specialization": "Corporate Law",
+                    "phone": "+91-22-6636-7000",
+                    "email": "sujit.ghosh@plurilaw.com"
+                  },
+                  {
+                    "name": "Akil Hirani",
+                    "specialization": "Corporate Law",
+                    "phone": "+91-22-6636-7000",
+                    "email": "akil.hirani@majmudar.com"
+                  }
+                ],
+                "public_administration": [
+                  {
+                    "name": "Prashant Bhushan",
+                    "specialization": "Public Administration",
+                    "phone": "+91-11-2656-1000",
+                    "email": "prashant.bhushan@bhushanlaw.com"
+                  },
+                  {
+                    "name": "Indira Jaising",
+                    "specialization": "Public Administration",
+                    "phone": "+91-22-2200-5000",
+                    "email": "indira.jaising@lawyerscollective.org"
+                  },
+                  {
+                    "name": "Gopal Subramanium",
+                    "specialization": "Public Administration",
+                    "phone": "+91-11-2307-5000",
+                    "email": "gopal.subramanium@gslegal.in"
+                  },
+                  {
+                    "name": "Harish Salve",
+                    "specialization": "Public Administration",
+                    "phone": "+91-11-2371-5000",
+                    "email": "harish.salve@hsalve.com"
+                  }
+                ],
+                "healthcare": [
+                  {
+                    "name": "Sujata V. Manohar",
+                    "specialization": "Healthcare Law",
+                    "phone": "+91-22-2200-5000",
+                    "email": "sujata.manohar@lawyerscollective.org"
+                  },
+                  {
+                    "name": "Colin Gonsalves",
+                    "specialization": "Healthcare Law",
+                    "phone": "+91-22-2282-5000",
+                    "email": "colin.gonsalves@hrln.org"
+                  },
+                  {
+                    "name": "Anand Grover",
+                    "specialization": "Healthcare Law",
+                    "phone": "+91-22-2200-5000",
+                    "email": "anand.grover@lawyerscollective.org"
+                  },
+                  {
+                    "name": "Menaka Guruswamy",
+                    "specialization": "Healthcare Law",
+                    "phone": "+91-11-2656-1000",
+                    "email": "menaka.guruswamy@lawchambers.in"
+                  }
+                ],
+                "insurance": [
+                    {
+                      "name": "Cyrus S. Poonawalla",
+                      "specialization": "Insurance Law",
+                      "phone": "+91-20-2612-5000",
+                      "email": "cyrus.poonawalla@poonawallagroup.com"
+                    },
+                    {
+                      "name": "Rashesh Shah",
+                      "specialization": "Insurance Law",
+                      "phone": "+91-22-6141-5000",
+                      "email": "rashesh.shah@edelweissfin.com"
+                    },
                 { name: 'Isabella Taylor', specialization: 'Insurance Law', phone: '777-888-9992', email: 'isabella.taylor@example.com' },
                 { name: 'Daniel Green', specialization: 'Insurance Law', phone: '000-111-2222', email: 'daniel.green@example.com' }
             ],
@@ -56,6 +167,8 @@ const DomainPage = () => {
     };
 
     return (
+        <>
+        <TopBar />
         <Container>
             <h2 className="text-center my-4">Lawyers Specializing in {domain.replace('_', ' ').toUpperCase()}</h2>
             {lawyers.length === 0 ? (
@@ -77,6 +190,7 @@ const DomainPage = () => {
                 ))
             )}
         </Container>
+        </>
     );
 };
 
