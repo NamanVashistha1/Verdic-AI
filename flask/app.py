@@ -207,19 +207,28 @@ def query_document():
 
 def get_final_response(query: str, context: List[str]) -> str:
     context_text = " ".join(context)
-    prompt = (
-        f"Based on the given query: {query}\n\n"
-        f"Context from relevant sources:\n{context_text}\n\n"
-        "Provide a direct answer without introductory phrases. Answer the query first, then include fines/penalties or case references **only if they are mentioned in the context**. Do not say 'No specific case' or 'Not mentioned'. The response must not exceed 100 words."
-    )
+    # prompt = (
+    #     f"Based on the given query: {query}\n\n"
+    #     f"Context from relevant sources:\n{context_text}\n\n"
+    #     "Provide a direct answer without introductory phrases. Answer the query first, then include fines/penalties or case references **only if they are mentioned in the context**. Do not say 'No specific case' or 'Not mentioned'. The response must not exceed 100 words."
+    # )
+    
+    prompt = f"""
+    You are an expert legal analyst. Based on the given query: {query} and Context from relevant sources : {context_text}.
+    First answer the query, then Identify the laws or acts related to query, any peanlties or fines related. Provide a structured, easy-to-understand response.
+    Provide a direct answer without introductory phrases. And form appropriate paras. Answer should be within 200 words.
+    """
+    
     # print(prompt)
     response = llm.invoke(prompt)
     unwanted_phrases = [
-        "Here are the three points:",
+        "Query answer",
+        "Laws related to Query:",
         "1. Fines/Penalties:",
         "2. Case Reference:",
         "3. Other Provisions:",
         "No specific case reference is available",
+        "*",
         "Not mentioned in the provided text"
     ]
     
