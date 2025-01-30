@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, File, LogOut, DollarSign } from "lucide-react";
+import { Home, BookOpen, HelpCircle, MessageCircle, ChevronRight, File, LogOut, DollarSign, LogIn } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import { Book } from 'react-bootstrap-icons';
 
 function CustomNavbar() {
   const [show, setShow] = useState(false);
@@ -29,7 +30,8 @@ function CustomNavbar() {
     { title: "Home", icon: <Home size={20} />, path: "/" },
     { title: "Legal Articles", icon: <BookOpen size={20} />, path: "/news" },
     { title: "Queries", icon: <HelpCircle size={20} />, path: "/queries" },
-    { title: "Doc Comparator", icon: <File size={20} />, path: "/pdfcompare" },
+    { title: "Doc Comparator", icon: <Book size={20} />, path: "/pdfcompare" },
+    { title: "Contract Analysis", icon: <File size={20} />, path: "/riskanalysis" },
     { 
       title: "Legal Cost Estimator", 
       icon: <DollarSign size={20} />, 
@@ -37,7 +39,7 @@ function CustomNavbar() {
     },
     {
       title: isAuthenticated ? "Logout" : "Login",
-      icon: isAuthenticated ? <LogOut size={20} /> : <MessageCircle size={20} />,
+      icon: isAuthenticated ? <LogOut size={20} /> : <LogIn size={20} />,
       path: isAuthenticated ? "#" : "/login",
       onClick: isAuthenticated ? handleLogout : undefined,  // Handle logout if authenticated
     },
