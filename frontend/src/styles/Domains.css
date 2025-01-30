@@ -12,12 +12,21 @@
     outline: none !important;
     border-left-color: #28a745; /* Optional: Keeps the left border effect */
 }
-
-/* Ensure the text color remains the same after click */
 .domain-item {
     color: #333 !important;
-    border: white !important;
+    border-radius: 12px; /* Smooth rounded edges */
+    border: 1px solid #ddd; /* Light border for definition */
+    transition: all 0.3s ease-in-out; 
+    background-color: #fff; /* Ensure background color */
 }
+
+
+
+/* Ensure the text color remains the same after click */
+/* .domain-item {
+    color: #333 !important;
+    border: white !important;
+} */
 
 /* Remove any Bootstrap active styles */
 .domain-item.active {

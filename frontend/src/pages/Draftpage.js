@@ -21,7 +21,7 @@ function Draft() {
   return (
     <>
       <TopBar />
-      <div className="container mt-5 card-body">
+      <div className="container mt-4 card-body">
         <h1>Draft Generator</h1>
 
         <div className="mb-4">

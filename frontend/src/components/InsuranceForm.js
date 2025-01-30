@@ -105,7 +105,7 @@ function Insuranceform() {
 
   return (
     <>
-      <div className="card">
+      <div className="card mb-3">
         <div className="card-body">
           {/* <h3 className="card-title mb-4">{insuranceClaim.name}</h3> */}
           <form onSubmit={handleSubmit}>

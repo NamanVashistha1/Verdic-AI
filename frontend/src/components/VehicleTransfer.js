@@ -111,10 +111,10 @@ const VehicleTransferForm = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="mb-4">Vehicle Ownership Transfer Form</h2>
-      <form onSubmit={(e) => { e.preventDefault(); generatePDF(); }}>
-        <h3>Part 1: Transferor Information</h3>
+    <div className="container mt-4 px-0">
+      {/* <h2 className="mb-4">Vehicle Ownership Transfer Form</h2> */}
+      <form class="card" style={{padding: "17px", marginBottom: "17px"}} onSubmit={(e) => { e.preventDefault(); generatePDF(); }}>
+        <h6>Part 1: Transferor Information</h6>
         <div className="mb-3">
           <label className="form-label">Transferor's Name</label>
           <input type="text" className="form-control" id="transferor" onChange={(e) => handleInputChange(e, 1)} />
@@ -148,7 +148,7 @@ const VehicleTransferForm = () => {
           <input type="date" className="form-control" id="transferDate" onChange={(e) => handleInputChange(e, 1)} />
         </div>
 
-        <h3>Part 2: Transferee Information</h3>
+        <h6>Part 2: Transferee Information</h6>
         <div className="mb-3">
           <label className="form-label">Transferee's Name</label>
           <input type="text" className="form-control" id="transferee" onChange={(e) => handleInputChange(e, 2)} />

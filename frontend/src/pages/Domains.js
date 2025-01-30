@@ -18,10 +18,10 @@ const LegalDomains = () => {
   return (
     <>
       <TopBar />
-      <Container fluid className="legal-domains-container py-5">
+      <Container fluid className="legal-domains-container py-4">
         <Row className="justify-content-center">
           <Col xs={12} md={10} lg={8}>
-            <h2 className="text-center mb-4 display-4 fw-large">
+            <h2 className="text-center mb-4  fw-large">
               Your Legal Matters, Handled by Experts in Every Domain
             </h2>
             <ListGroup className="domain-list">

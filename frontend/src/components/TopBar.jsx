@@ -79,7 +79,7 @@ function CustomNavbar() {
                 key={index}
                 as={item.onClick ? 'button' : Link} // Use 'button' for logout action
                 to={item.path}
-                className="nav-link text-white py-3 px-4 d-flex align-items-center justify-content-between border-bottom border-secondary"
+                className="nav-link text-white py-2 px-4 d-flex align-items-center justify-content-between border-bottom border-secondary"
                 onClick={item.onClick ? handleLogout : handleClose} // Trigger logout or close
               >
                 <div className="d-flex align-items-center gap-3">

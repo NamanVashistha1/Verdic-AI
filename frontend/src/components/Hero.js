@@ -8,10 +8,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const LegalAIHero = () => {
   return (
-    <section className="hero-section mb-1 mt-3 bg-gradient-primary text-white position-relative">
+    <section className="hero-section mb-1 mt-3 bg-gradient-primary text-white position-relative" style={{
+      backgroundImage: `url('https://png.pngtree.com/thumb_back/fh260/background/20241030/pngtree-wooden-gavel-on-judge-s-desk-legal-justice-surface-law-and-image_16472274.jpg')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      borderRadius: "20px", // Curved edges
+    overflow: "hidden",
+    opacity: "0.9"
+    }}>
       <Container fluid className="px-4 py-3">
         <Row className="align-items-center justify-content-center">
-          <Col xs={12} md={10} lg={8} xl={6} className="text-center">
+          <Col xs={12} md={10} lg={8} xl={6} className="text-center"  >
             <h1 className="display-4 fw-bold mb-3 animate__animated animate__fadeInUp">
               Ask Legal AI
             </h1>
