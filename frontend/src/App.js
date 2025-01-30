@@ -14,6 +14,10 @@ import OTP from './pages/OTP';
 import QueriesPage  from './pages/queries'
 import PdfComparator from './pages/PDFcomparator'
 import LegalCostEstimator from './pages/Estimator';
+import LegalDomains from './pages/Domains';
+import DomainPage from './pages/Lawyers';
+import RiskAnalysis from './pages/RiskAnalysis';
+
 import DraftPage from './pages/Draftpage'
 const App = () => {
   return (
@@ -30,6 +34,9 @@ const App = () => {
             <Route path ="/queries" element={<QueriesPage />} />
             <Route path ="/pdfcompare" element={<PdfComparator />} />
             <Route path ="/estimate" element={<LegalCostEstimator />} />
+            <Route path ="/domains" element={<LegalDomains />} />
+            <Route path="/lawyers/:domain" element={<DomainPage />} />
+            <Route path ="/riskanalysis" element={<RiskAnalysis />} />
             <Route path= "/draft" element ={ <DraftPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

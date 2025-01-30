@@ -17,7 +17,6 @@ from werkzeug.utils import secure_filename
 import os
 import tempfile
 from math import ceil
-import fitz
 
 app = Flask(__name__)
 CORS(app)
@@ -38,15 +37,63 @@ SEARCH_ENGINE_ID = "877170db56f5c4629"
 llm = Ollama(model="llama3.2")
 
 def extract_text_from_pdf(pdf_path):
-    """Extracts text from a PDF file."""
+    """Extracts text from a PDF file using PyPDFLoader."""
     text = ""
     try:
-        doc = fitz.open(pdf_path)
-        for page in doc:
-            text += page.get_text("text") + "\n"
+        loader = PyPDFLoader(pdf_path)  # Load the PDF
+        documents = loader.load()  # Extract document pages
+        
+        # Combine text from all pages
+        text = "\n".join([doc.page_content for doc in documents])
+    
     except Exception as e:
         print(f"Error extracting text from {pdf_path}: {e}")
+    
     return text
+
+@app.route('/analyzecontract', methods=['POST'])
+def upload_contract():
+    if 'file1' not in request.files:
+        return jsonify({"error": "File is required"}), 400
+
+    file1 = request.files['file1']
+    
+    if file1.filename == '':
+        return jsonify({"error": "File is required"}), 400
+
+    if file1:
+        filename1 = secure_filename(file1.filename)
+
+        file_path1 = os.path.join(app.config['UPLOAD_FOLDER'], filename1)
+        # file1.save(file_path1)
+        normalized_path1 = file_path1.replace("\\", "/")
+        normalized_path1 = 'D:/WEBDEV/Cruisers_TSEC_Hacks/flask/' + normalized_path1
+        file1.save(normalized_path1)
+
+        # Extract text from both PDFs
+        text1 = extract_text_from_pdf(file_path1)
+
+        # Compare using LLM
+        analyzed_response = risk_llm(text1)
+
+        return jsonify({
+            "analyzedResponse": analyzed_response
+        })
+
+    return jsonify({"error": "File upload failed"}), 500
+
+def risk_llm(text1):
+    """Uses LLM to analyze legal contracts."""
+    prompt = f"""
+    You are an expert legal analyst. Analyze the following legal contract.
+    {text1}
+    Identify high risk clauses, suggest changes additions, and removals. Explain 2 lines why the suggested changes are good. Provide a structured, easy-to-understand response.
+    Provide a direct answer without introductory phrases. And form appropriate paras. Answer should be within 250 words.
+    """
+    
+    response = llm.invoke(prompt)
+    
+    return response
 
 @app.route('/upload', methods=['POST'])
 def upload_files():
@@ -56,6 +103,7 @@ def upload_files():
     file1 = request.files['file1']
     file2 = request.files['file2']
 
+    
     if file1.filename == '' or file2.filename == '':
         return jsonify({"error": "Both files must have names"}), 400
 
@@ -64,10 +112,16 @@ def upload_files():
         filename2 = secure_filename(file2.filename)
 
         file_path1 = os.path.join(app.config['UPLOAD_FOLDER'], filename1)
+        # file1.save(file_path1)
+        normalized_path1 = file_path1.replace("\\", "/")
+        normalized_path1 = 'D:/WEBDEV/Cruisers_TSEC_Hacks/flask/' + normalized_path1
         file_path2 = os.path.join(app.config['UPLOAD_FOLDER'], filename2)
-
-        file1.save(file_path1)
-        file2.save(file_path2)
+        # file2.save(file_path2)
+        normalized_path2 = file_path2.replace("\\", "/")
+        normalized_path2 = 'D:/WEBDEV/Cruisers_TSEC_Hacks/flask/' + normalized_path2
+        
+        file1.save(normalized_path1)
+        file2.save(normalized_path2)
 
         # Extract text from both PDFs
         text1 = extract_text_from_pdf(file_path1)
@@ -91,6 +145,7 @@ def compare_documents_with_llm(text1, text2):
     New Law:
     {text2}
     Identify the key changes, additions, and removals. Explain how these changes affect individuals and businesses. Provide a structured, easy-to-understand response.
+    Provide a direct answer without introductory phrases. And form appropriate paras. Answer should be within 250 words.
     """
     
     response = llm.invoke(prompt)
@@ -338,6 +393,7 @@ def search_web(query: str, num_results: int = 3) -> List[Dict[str, str]]:
         res = service.cse().list(q=legal_query, cx=SEARCH_ENGINE_ID, num=num_results * 2).execute()
         
         results = []
+        
         if "items" in res:
             for item in res["items"]:
                 # Filter results containing relevant legal terms
@@ -351,6 +407,39 @@ def search_web(query: str, num_results: int = 3) -> List[Dict[str, str]]:
                     results.append(result)
                     if len(results) == num_results:
                         break
+        
+        if len(results) == 0:
+            legal_query = f"{query} India cases"
+            res = service.cse().list(q=legal_query, cx=SEARCH_ENGINE_ID, num=num_results * 2).execute()
+            if "items" in res and len(res["items"]) > 0:
+                for item in res["items"]:
+                    if any(keyword in item["title"].lower() or keyword in item["snippet"].lower()
+                           for keyword in ["law", "legal", "court", "case", "attorney", "lawyer"]):
+                        result = {
+                            "title": item["title"],
+                            "link": item["link"],
+                            "snippet": item["snippet"]
+                        }
+                        results.append(result)
+                        if len(results) == num_results:
+                            break
+
+        # If still no results, try searching for legal advice
+        if len(results) == 0:
+            legal_query = f"{query} India legal advice"
+            res = service.cse().list(q=legal_query, cx=SEARCH_ENGINE_ID, num=num_results * 2).execute()
+            if "items" in res and len(res["items"]) > 0:
+                for item in res["items"]:
+                    if any(keyword in item["title"].lower() or keyword in item["snippet"].lower()
+                           for keyword in ["law", "legal", "court", "case", "attorney", "lawyer"]):
+                        result = {
+                            "title": item["title"],
+                            "link": item["link"],
+                            "snippet": item["snippet"]
+                        }
+                        results.append(result)
+                        if len(results) == num_results:
+                            break
         
         return results
     except Exception as e:
