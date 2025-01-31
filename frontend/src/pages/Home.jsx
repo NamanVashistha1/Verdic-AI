@@ -42,7 +42,7 @@ export default function Home() {
     <>
       <TopBar />
       <LegalAIHero/>
-      <div className="text-center">
+      {/* <div className="text-center"> */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -71,7 +71,7 @@ export default function Home() {
         </div>
         <FeatureSection /> {/* ✅ Using the animated section here */}
         <TestimonialCarousel />
-      </div>
+      {/* </div> */}
     </>
   );
 }

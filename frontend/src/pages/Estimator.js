@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ChevronDown, DollarSign, Briefcase, BarChart2, Scale } from "lucide-react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import TopBar from "../components/TopBar";
 import axios from "axios"; // Ensure you have axios installed
 

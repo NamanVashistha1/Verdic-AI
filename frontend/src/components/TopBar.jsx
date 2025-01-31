@@ -53,10 +53,13 @@ function CustomNavbar() {
   return (
     <>
       {/* Navbar with Dark Theme */}
-      <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-between">
-        <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
-        <Navbar.Brand className="mx-auto text-white fw-bold" >VerdicAI</Navbar.Brand>
-      </Navbar>
+      <Navbar bg="dark" variant="dark" expand={false} fixed="top" className="px-3 d-flex justify-content-start">
+          <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
+          <Navbar.Brand className="text-white fw-bold" style={{ marginLeft: "15px" }}>
+            VerdicAI
+          </Navbar.Brand>
+        </Navbar>
+
 
       {/* Offcanvas Sliding Menu (Left Side) */}
       <div
